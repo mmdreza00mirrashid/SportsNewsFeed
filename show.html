@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="./Scripts/Date.js"></script>
     <script src="./Scripts/Show.js"></script>
+    <script src="./Scripts/Search.js"></script>
     <link href="./Css/Show.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
@@ -33,8 +34,8 @@
             </button>
 
             <!-- Search icon -->
-            <form class="form-inline ml-3">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline ml-3" onsubmit="return handleSearch()">
+                <input class="form-control mr-sm-2" id="searchQuery" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -56,13 +57,13 @@
                     <a class="nav-link" href="#">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign In</a>
+                    <a class="nav-link" href="./Login.html">Sign In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">News</a>
+                    <a class="nav-link" href="./newList.html">News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
+                    <a class="nav-link" href="./Profile.html">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" style="background-color: #007bff;" href="#">Home</a>
@@ -73,53 +74,40 @@
     </nav>
     
     <div class="container">
-        <div class="post-container bg-white p-3 rounded mb-3">
+        <div id="post-container" class="bg-white p-3 rounded mb-3">
             <div class="post-row d-flex justify-content-between mb-3">
                 <div class="user-profile d-flex align-items-center">
-                    <img src="./img/Profile.jpg" class="rounded-circle me-2" width="45px">
+                    <img src="" id="user-image" class="rounded-circle me-2" width="45px">
                     <div>
-                        <p class="mb-0">User Name</p> 
-                        <span class="text-muted">June 24 2023, 13:40 pm</span>
+                        <p id="user-name" class="mb-0">User Name</p> 
+                        <span id="post-date" class="text-muted">Date</span>
                     </div>
                 </div>
             </div>
-            <img src="./img/euro.png" class="post-img img-fluid rounded mb-3">
-            <p class="post-text text-muted">This will be England's third match against Spain at a European Championship - and the Three Lions triumphed in the previous two.
-
-                In the 1980 group stages, England beat Spain 2-1 in Naples - although both sides went out.
-                
-                And in 1996 the sides met in the last 16 at Wembley, with England winning on penalties after a goalless draw.
-                
-                They have met twice at the World Cup too. In 1950 Spain won 1-0 in a group game in Rio de Janeiro and in 1982 they played out a goalless draw at the Bernabeu in the second group stage.
-                
-                England did win the most recent tie, a 3-2 victory in Seville in the 2018 Nations League, but only won two of their 10 meetings before that (excluding penalties).
-                
-                In international and club finals, though, Spanish teams take some stopping - with 22 successes in a row since 2001.
-                
-                The national team have won their past three major tournament finals, while the last nine Champions League finals and 10 Europa League finals involving a Spanish side and a foreign team have all ended in La Liga victory.</p>
+            <img src="" id="post-image" class="post-img img-fluid rounded mb-3">
+            <h5 id="post-title"></h5>
+            <p id="post-text" class="post-text text-muted">Description</p>
             
             <div class="post-row d-flex justify-content-between">
                 <div class="row activity-icons d-flex">
                     <div class="col-md-4 col-sm-12 mb-2">
-                        <div class="col-md-4 col-sm-12 mb-2">
-                            <div class="views d-flex align-items-center" id="likeButton">
-                              <i class="far fa-thumbs-up mr-2"></i> <span id="likeCount">53</span>
-                            </div>
+                        <div class="views d-flex align-items-center" id="likeButton">
+                            <i class="far fa-thumbs-up mr-2"></i> <span id="likeCount">0</span>
+                        </div>
                     </div>
                     <div class="col-md-4 col-sm-12 mb-2">
-                      <div class="views d-flex align-items-center">
-                        <i class="far fa-comment-alt mr-2"></i> <span id="commentCount">0</span>
-                      </div>
+                        <div class="views d-flex align-items-center">
+                            <i class="far fa-comment-alt mr-2"></i> <span id="commentCount">0</span>
+                        </div>
                     </div>
                     <div class="col-md-4 col-sm-12 mb-2">
-                      <div class="views d-flex align-items-center">
-                        <i class="far fa-eye mr-2"></i> 100
-                      </div>
+                        <div class="views d-flex align-items-center">
+                            <i class="far fa-eye mr-2"></i> <span id="viewCount">0</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
       </div>
       
       <div class="container">

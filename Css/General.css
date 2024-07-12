@@ -1,0 +1,8 @@
+.like-button {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.like-button:hover {
+    color: #007bff; /* Change to your desired hover color */
+}

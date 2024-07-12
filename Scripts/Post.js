@@ -40,10 +40,40 @@ function handleImageUpload(input) {
   }
 }
 
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+      category: params.get('category'),
+      date: params.get('date'),
+      title: params.get('title'),
+      description: params.get('description'),
+      content: params.get('content'),
+      image: params.get('image'),
+      likes: params.get('likes'),
+      comments: params.get('comments'),
+      views: params.get('views')
+  };
+}
+
+// Function to populate the form fields with the query parameters
+function populateForm() {
+  const post = getQueryParams();
+
+  document.getElementById('postTitle').value = post.title;
+  document.getElementById('postCategory').value = post.category;
+  document.getElementById('postExplanation').value = post.description;
+  document.getElementById('postContent').value = post.content;
+
+  if (post.image) {
+      document.getElementById('imagePreview').innerHTML = `<img src="${post.image}" class="img-thumbnail" style="max-width: 200px;">`;
+      document.getElementById('imageUploadInput').removeAttribute('required');
+  }
+}
+
 
 $(document).ready(function() {
   populateCategories(); // Populate categories on page load
-  
+  populateForm();
   // Handle form submission
   $('#postForm').submit(function(event) {
     event.preventDefault(); // Prevent form from submitting

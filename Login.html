@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$p0rt News</title>
     <script src="./Scripts/Date.js"></script>
+    <script src="./Scripts/Search.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -25,8 +26,8 @@
             </button>
 
             <!-- Search icon -->
-            <form class="form-inline ml-3">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline ml-3" onsubmit="return handleSearch()">
+                <input class="form-control mr-sm-2" id="searchQuery" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -48,13 +49,13 @@
                     <a class="nav-link" href="#">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign In</a>
+                    <a class="nav-link" href="./Login.html">Sign In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">News</a>
+                    <a class="nav-link" href="./newList.html">News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
+                    <a class="nav-link" href="./Profile.html">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" style="background-color: #007bff;" href="#">Home</a>
@@ -74,14 +75,12 @@
                             <h1 class="text-white" >Enter your credentials</h1>
                         </div>
                         <div class="form-group">
-                            <label for="emailOrPhone" class="text-white">Email or Phone</label>
-                            <input type="text" class="form-control" id="emailOrPhone">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="text-white">Password</label>
-                            <input type="password" class="form-control" id="password">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                            <input type="text" class="form-control" id="loginUsername" placeholder="Emair ot Phone" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                          </div>
+                        <button type="submit" class="btn btn-primary btn-block" onclick="login()">Login</button>
                         <p class="text-center"><a href="#" onclick="showRegisterForm() ">Dont have an account? Sign Up</a></p>
                     </form>
                 </div>
@@ -94,44 +93,44 @@
                     <form>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <input type="text" class="form-control" placeholder="First Name">
+                                <input type="text" class="form-control" id="firstNameInput" placeholder="First Name">
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="text" class="form-control" placeholder="Middle Name">
+                                <input type="text" class="form-control" id="middleNameInput" placeholder="Middle Name">
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="text" class="form-control" placeholder="Last Name">
+                                <input type="text" class="form-control" id="lastNameInput" placeholder="Last Name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Mobile Number or Email Address">
+                            <input type="text" class="form-control" id="contactInput" placeholder="Mobile Number or Email Address">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Enter a Password">
+                            <input type="password" class="form-control" id="passwordInput" placeholder="Enter a Password">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Confirm the Password">
+                            <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Confirm the Password">
                         </div>
                         <div class="form-group">
                             <label class="text-white">Date of Birth</label>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" id="dobInput">
                         </div>
                         <div class="form-group">
                             <label class="text-white">Gender</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male">
-                                <label class="form-check-label text-white" for="male">Male</label>
+                                <input class="form-check-input" type="radio" name="gender" id="maleRadio">
+                                <label class="form-check-label text-white" for="maleRadio">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="female">
-                                <label class="form-check-label text-white" for="female">Female</label>
+                                <input class="form-check-input" type="radio" name="gender" id="femaleRadio">
+                                <label class="form-check-label text-white" for="femaleRadio">Female</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="notToSay">
-                                <label class="form-check-label text-white" for="notToSay">Prefer Not to Say</label>
+                                <input class="form-check-input" type="radio" name="gender" id="notToSayRadio">
+                                <label class="form-check-label text-white" for="notToSayRadio">Prefer Not to Say</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                        <button type="submit" class="btn btn-primary btn-block" onclick="register()">Sign Up</button>
                         <p class="text-center"><a href="#" onclick="showLoginForm()">Back to Login</a></p>
                     </form>
                 </div>
