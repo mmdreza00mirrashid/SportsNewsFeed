@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$p0rt News</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="./Scripts/Date.js"></script>
+    <script src="./Scripts/Post.js"></script>
+    <link href="./Css/Post.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <!-- Left side content -->
+        <a class="navbar-brand" href="#">$p0rt News</a>
+        <div class="d-flex align-items-center">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Search icon -->
+            <form class="form-inline ml-3">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            
+            <!-- Date/time -->
+            <div class="ml-3 text-light">
+              <span id="currentDateTime"></span>
+              <i class="fas fa-calendar-alt"></i>
+          </div>
+        </div>
+
+        
+
+        <!-- Right side content: collapsible items -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" style="background-color: #007bff;" href="#">Home</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+    
+    
+    <div class="container mt-4">
+        <h2 class="mb-4">Create or Edit Post</h2>
+        
+        <!-- Container for the upload area -->
+        <div class="card p-3 text-center">
+          
+          
+          <!-- Form for post title and content -->
+          <form id="postForm">
+                <h5 class="card-title">Upload an Image</h5>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="imageUploadInput" accept="image/*" onchange="handleImageUpload(this)" required>
+                    <label class="custom-file-label" for="imageUploadInput">Choose file</label>
+                </div>
+            <div id="imagePreview" class="mt-3"></div>
+            <div class="form-group">
+              <label for="postTitle">Title</label>
+              <input type="text" class="form-control" id="postTitle" placeholder="Enter title" required>
+            </div>
+            <!-- Category dropdown -->
+            <div class="form-group">
+                <label for="postCategory">Category</label>
+                <select class="form-control" id="postCategory" required>
+                  <!-- Options will be dynamically added here -->
+                </select>
+              </div>
+            <div class="form-group">
+                <label for="postExplanation">Brief Explanation</label>
+                <textarea class="form-control" id="postExplanation" rows="2" placeholder="Write a brief explanation" required></textarea>
+              </div>
+            <div class="form-group">
+              <label for="postContent">Content</label>
+              <textarea class="form-control form-control-expand" id="postContent" rows="4" placeholder="Write the new's content" oninput="autoExpand(this)" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Post</button>
+          </form>
+        </div>
+      </div>
+      
+    
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center text-lg-start mt-5">
+      <div class="container-fluid p-4">
+          
+          <!--Grid row-->
+          <div class="row">
+              <!--Grid column-->
+              <!--Grid column for logo-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <!-- Your custom logo -->
+                <img src="./img/Logo.png" alt="Your Company Logo" class="footer-logo img-fluid">
+              </div>
+
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                  <h5 class="text-uppercase">Quick Access</h5>
+                  <ul class="list-unstyled mb-0">
+                      <li>
+                          <a href="#">About us</a>
+                      </li>
+                      <li>
+                          <a href="#">Contact us</a>
+                      </li>
+                      <li>
+                          <a href="#">Archive</a>
+                      </li>
+                  </ul>
+              </div>
+              <!--Grid column-->
+  
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                  <h5 class="text-uppercase">News Categories</h5>
+                  <ul class="list-unstyled mb-0">
+                      <li>
+                          <a href="#">Latest News</a>
+                      </li>
+                      <li>
+                          <a href="#">Soccer News</a>
+                      </li>
+                      <li>
+                          <a href="#">Basketball News</a>
+                      </li>
+                      <li>
+                          <a href="#">Volleyball News</a>
+                      </li>
+                      <li>
+                          <a href="#">Other Sports</a>
+                      </li>
+                  </ul>
+              </div>
+              <!--Grid column-->
+              
+              
+            <!--Grid column-->
+
+
+          </div>
+          <div class="col-lg-12 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Follow Us</h5>
+            <a href="https://telegram.me/Team_MMDs" class="text-white me-4">
+                <i class="fab fa-telegram"></i>
+            </a>
+            <a href="https://wa.me/Team_MMDs" class="text-white me-4">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://twitter.com/Team_MMDs" class="text-white me-4">
+              <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://facebook.com/Team_MMDs" class="text-white me-4">
+              <i class="fab fa-facebook"></i>
+          </a>
+        </div>
+
+      </div>
+  
+</footer>
+
+    <!-- Bootstrap JS and dependencies -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

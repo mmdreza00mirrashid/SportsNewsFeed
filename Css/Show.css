@@ -1,0 +1,6 @@
+.views {
+    cursor: pointer; /* Add pointer cursor for better usability */
+  }
+  .liked {
+    color: blue; /* Change color to blue when liked */
+  }
